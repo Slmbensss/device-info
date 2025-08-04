@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cihaz ve IP Bilgisi</title>
+</head>
+<body>
+  <h1>Hoşgeldiniz</h1>
+  <p id="info">Bilgiler yükleniyor...</p>
+
+  <script>
+    const deviceInfo = navigator.userAgent;
+
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('info').innerText = 
+          `Cihaz Bilgisi: ${deviceInfo}\nIP Adresi: ${data.ip}`;
+      })
+      .catch(() => {
+        document.getElementById('info').innerText = `Cihaz Bilgisi: ${deviceInfo}\nIP adresi alınamadı.`;
+      });
+  </script>
+</body>
+</html>
